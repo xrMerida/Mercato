@@ -1,0 +1,8 @@
+# IDE / Editor artifacts
+.vs/
+.cache/
+__cmake*
+
+# Build artifacts
+build/
+@build*

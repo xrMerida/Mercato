@@ -1,0 +1,17 @@
+[
+    {
+        "label": "CMake: Configure Debug",
+        "command": "cmake --preset $(uname)-debug",
+        "tags": ["cmake-project", "native"],
+    },
+    {
+        "label": "CMake: Build",
+        "command": "cmake --build --preset default-build-$(uname)",
+        "tags": ["cmake-project", "native"],
+    },
+    {
+        "label": "CMake: Configure Release",
+        "command": "cmake --preset $(uname)-release",
+        "tags": ["cmake-project", "native"],
+    },
+]

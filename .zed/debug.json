@@ -1,0 +1,10 @@
+[
+    {
+        "label": "Linux Debug",
+        "build": "CMake: Build",
+        "program": "$ZED_WORKTREE_ROOT/build/mercato",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "adapter": "CodeLLDB",
+    },
+]
