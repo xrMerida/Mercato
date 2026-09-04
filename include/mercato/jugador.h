@@ -6,12 +6,13 @@ struct Club;
 
 class Jugador {
   public:
-    Jugador(int id, std::string nombre, int valor, Club *club);
+    Jugador(int id, std::string nombre, int valor);
     virtual ~Jugador() = default;
 
     virtual void mostrar_info() const;
     std::string nombre() const;
     int valor() const;
+    void set_club(Club *club);
 
   protected:
     int id_;

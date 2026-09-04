@@ -4,7 +4,7 @@
 
 class Delantero : public Jugador {
   public:
-    Delantero(int id, std::string nombre, int valor, Club *club);
+    Delantero(int id, std::string nombre, int valor);
     ~Delantero() = default;
 
     void mostrar_info() const override;

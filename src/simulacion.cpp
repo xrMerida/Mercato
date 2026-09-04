@@ -12,6 +12,10 @@ Simulacion::Simulacion(std::vector<Club> clubes,
         throw "dia final fuera de rango [5 - 15]";
     if (club_usuario < 0 || club_usuario >= clubes_.size())
         throw "club del usuario no existe";
+
+    for (Club &club : clubes_)
+        for (Jugador *jugador : club.jugadores)
+            jugador->set_club(&club);
 }
 
 void Simulacion::ver_mi_club() const {
