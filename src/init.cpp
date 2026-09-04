@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <iostream>
+#include <iterator>
 #include <vector>
 #if defined(_WIN32)
 #include <Windows.h>
@@ -16,55 +17,58 @@
 Simulacion *init::simulacion() {
     // Generar los Clubes y Jugadores
     std::vector<Club *> clubes{
-        new Club("Real Madrid", aleat_int(100, 200),
-             {
-                 new Portero(1, "Thibaut Courtois", aleat_int(20, 70)),
-                 new Defensa(2, "Éder Militão", aleat_int(25, 90)),
-                 new Mediocampista(3, "Jude Bellingham", aleat_int(30, 110)),
-                 new Delantero(4, "Vinícius Júnior", aleat_int(35, 140)),
-                 new Mediocampista(5, "Federico Valverde", aleat_int(30, 110)),
-             }),
+        new Club(
+            "Real Madrid", aleat_int(100, 200),
+            {
+                new Portero(1, "Thibaut Courtois", aleat_int(20, 70)),
+                new Defensa(2, "Éder Militão", aleat_int(25, 90)),
+                new Mediocampista(3, "Jude Bellingham", aleat_int(30, 110)),
+                new Delantero(4, "Vinícius Júnior", aleat_int(35, 140)),
+                new Mediocampista(5, "Federico Valverde", aleat_int(30, 110)),
+            }),
         new Club("FC Barcelona", aleat_int(100, 200),
-             {
-                 new Portero(6, "Marc-André ter Stegen", aleat_int(20, 70)),
-                 new Defensa(7, "Ronald Araújo", aleat_int(25, 90)),
-                 new Mediocampista(8, "Pedri González", aleat_int(30, 110)),
-                 new Delantero(9, "Robert Lewandowski", aleat_int(35, 140)),
-                 new Delantero(10, "Lamine Yamal", aleat_int(35, 140)),
-             }),
-        new Club("Manchester City", aleat_int(100, 200),
-             {
-                 new Portero(11, "Ederson", aleat_int(20, 70)),
-                 new Defensa(12, "Rúben Dias", aleat_int(25, 90)),
-                 new Mediocampista(13, "Rodri Hernández", aleat_int(30, 110)),
-                 new Delantero(14, "Erling Haaland", aleat_int(35, 140)),
-                 new Mediocampista(15, "Kevin De Bruyne", aleat_int(30, 110)),
-             }),
-        new Club("Inter Milan", aleat_int(100, 200),
-             {
-                 new Portero(16, "Yann Sommer", aleat_int(20, 70)),
-                 new Defensa(17, "Alessandro Bastoni", aleat_int(25, 90)),
-                 new Mediocampista(18, "Nicolò Barella", aleat_int(30, 110)),
-                 new Delantero(19, "Lautaro Martínez", aleat_int(35, 140)),
-                 new Delantero(20, "Marcus Thuram", aleat_int(35, 140)),
-             }),
-        new Club("Bayer Munich", aleat_int(100, 200),
-             {
-                 new Portero(21, "Manuel Neuer", aleat_int(20, 70)),
-                 new Defensa(22, "Dayot Upamecano", aleat_int(25, 90)),
-                 new Mediocampista(23, "Joshua Kimmich", aleat_int(30, 110)),
-                 new Delantero(24, "Harry Kane", aleat_int(35, 140)),
-                 new Mediocampista(25, "Jamal Musiala", aleat_int(30, 110)),
-             }),
+                 {
+                     new Portero(6, "Marc-André ter Stegen", aleat_int(20, 70)),
+                     new Defensa(7, "Ronald Araújo", aleat_int(25, 90)),
+                     new Mediocampista(8, "Pedri González", aleat_int(30, 110)),
+                     new Delantero(9, "Robert Lewandowski", aleat_int(35, 140)),
+                     new Delantero(10, "Lamine Yamal", aleat_int(35, 140)),
+                 }),
+        new Club(
+            "Manchester City", aleat_int(100, 200),
+            {
+                new Portero(11, "Ederson", aleat_int(20, 70)),
+                new Defensa(12, "Rúben Dias", aleat_int(25, 90)),
+                new Mediocampista(13, "Rodri Hernández", aleat_int(30, 110)),
+                new Delantero(14, "Erling Haaland", aleat_int(35, 140)),
+                new Mediocampista(15, "Kevin De Bruyne", aleat_int(30, 110)),
+            }),
+        new Club(
+            "Inter Milan", aleat_int(100, 200),
+            {
+                new Portero(16, "Yann Sommer", aleat_int(20, 70)),
+                new Defensa(17, "Alessandro Bastoni", aleat_int(25, 90)),
+                new Mediocampista(18, "Nicolò Barella", aleat_int(30, 110)),
+                new Delantero(19, "Lautaro Martínez", aleat_int(35, 140)),
+                new Delantero(20, "Marcus Thuram", aleat_int(35, 140)),
+            }),
+        new Club(
+            "Bayer Munich", aleat_int(100, 200),
+            {
+                new Portero(21, "Manuel Neuer", aleat_int(20, 70)),
+                new Defensa(22, "Dayot Upamecano", aleat_int(25, 90)),
+                new Mediocampista(23, "Joshua Kimmich", aleat_int(30, 110)),
+                new Delantero(24, "Harry Kane", aleat_int(35, 140)),
+                new Mediocampista(25, "Jamal Musiala", aleat_int(30, 110)),
+            }),
         new Club("Paris Saint-Germain", aleat_int(100, 200),
-             {
-                 new Portero(26, "Gianluigi Donnarumma", aleat_int(20, 70)),
-                 new Defensa(27, "Achraf Hakimi", aleat_int(25, 90)),
-                 new Mediocampista(28, "Vitinha", aleat_int(30, 110)),
-                 new Delantero(29, "Ousmane Dembélé", aleat_int(35, 140)),
-                 new Delantero(30, "Bradley Barcola", aleat_int(35, 140)),
-
-             }),
+                 {
+                     new Portero(26, "Gianluigi Donnarumma", aleat_int(20, 70)),
+                     new Defensa(27, "Achraf Hakimi", aleat_int(25, 90)),
+                     new Mediocampista(28, "Vitinha", aleat_int(30, 110)),
+                     new Delantero(29, "Ousmane Dembélé", aleat_int(35, 140)),
+                     new Delantero(30, "Bradley Barcola", aleat_int(35, 140)),
+                 }),
     };
 
     // Solicitar datos iniciales
@@ -72,12 +76,13 @@ Simulacion *init::simulacion() {
     int club_usuario;
     do {
         std::cout << "Club a administrar:\n";
-        for (size_t i = 0; i < clubes.size(); i++)
+        for (size_t i = 0; i < std::size(clubes); i++)
             std::cout << i + 1 << ". " << clubes[i]->nombre << "\n";
         std::cout << "> ";
 
         std::cin >> club_usuario;
-    } while (fallo_cin() || club_usuario < 1 || club_usuario > clubes.size());
+    } while (fallo_cin() || club_usuario < 1 ||
+             club_usuario > std::size(clubes));
     club_usuario--;
 
     do {
@@ -87,7 +92,7 @@ Simulacion *init::simulacion() {
 
     // Resumen
     std::cout << "\n--- Datos Generados ------";
-    for (size_t i = 0; i < clubes.size(); i++) {
+    for (size_t i = 0; i < std::size(clubes); i++) {
         std::cout << "\n- " << clubes[i]->nombre << " (Q "
                   << clubes[i]->presupuesto << ")\n";
         for (size_t j = 0; clubes[i]->jugadores.size() > j; j++) {
@@ -105,8 +110,15 @@ Simulacion *init::simulacion() {
         std::cin >> continuar;
     } while (fallo_cin());
 
-    if (continuar == 'N' || continuar == 'n')
+    if (continuar == 'N' || continuar == 'n') {
+        for (size_t c = 0; c < clubes.size(); c++) {
+            for (size_t j = 0; j < clubes[c]->jugadores.size(); j++) {
+                delete clubes[c]->jugadores[j];
+            }
+            delete clubes[c];
+        }
         return nullptr;
+    }
 
     return new Simulacion(clubes, dia_final, club_usuario);
 }

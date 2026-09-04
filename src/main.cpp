@@ -2,7 +2,6 @@
 #include "init.h"
 #include "simulacion.h"
 #include <array>
-#include <iostream>
 
 using namespace std;
 
@@ -12,7 +11,6 @@ int main() {
     init::terminal();
 
     do {
-        cout << "------------- Bienvenido a Mercato! -----------\n";
         sim_ = init::simulacion();
     } while (sim_ == nullptr);
 
@@ -38,4 +36,6 @@ int main() {
         seleccion = menu(_msg_p, _menu_p);
         _menu_p[seleccion].accion();
     } while (seleccion != 0);
+
+    delete sim_;
 }
