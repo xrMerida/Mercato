@@ -8,7 +8,7 @@ Jugador::Jugador(int id, std::string nombre, int valor)
     if (valor < 20 || valor > 140)
         throw "jugador con valor invalido [20 - 140]";
     if (id < 0)
-        throw "jugador con numero negativo";
+        throw "jugador con id negativo";
 }
 
 void Jugador::mostrar_info() const {
@@ -24,5 +24,6 @@ int Jugador::valor() const { return valor_; }
 void Jugador::set_club(Club *club) {
     if (!club)
         throw "direccion de club invalida";
+
     club_ = club;
 }
