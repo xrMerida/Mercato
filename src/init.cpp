@@ -108,8 +108,15 @@ Simulacion *init::simulacion() {
 }
 
 void init::terminal() {
-#if defined(_WIN32)
+#ifdef __WIN32
+    // Set UTF8 for windows console
     SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-#endif
+    // Allow ANSI escape codes for windows console
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    // Enable virtual terminal processing
+    DWORD mode;
+    GetConsoleMode(hOut, &mode);
+    mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, mode);
+#endif // !__WIN32
 }

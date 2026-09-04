@@ -3,6 +3,9 @@
 #include <iostream>
 #include <ostream>
 #include <random>
+#ifdef __WIN32
+#include <Windows.h>
+#endif // !__WIN32
 
 int aleat_int(int min, int max) {
     std::random_device rd;
@@ -23,15 +26,17 @@ bool fallo_cin() {
     return cinfail;
 }
 
-int mostrar_menu(std::span<const Opcion> opciones) {
+int menu(const char *msg, std::span<const Opcion> opts) {
     int seleccion;
     do {
-        for (size_t i = 0; i < opciones.size(); ++i) {
-            std::cout << (i + 1) << ". " << opciones[i].texto << "\n";
+        std::cout << kCCYAN << msg << kCRES;
+        for (size_t i = 0; i < opts.size(); ++i) {
+            std::cout << kCGREEN << (i + 1) << ". " << kCRES << opts[i].texto
+                      << "\n";
         }
-        std::cout << "> ";
+        std::cout << kCBLUE << "> " << kCRES;
 
         std::cin >> seleccion;
-    } while (fallo_cin() || seleccion < 0 || seleccion > opciones.size());
+    } while (fallo_cin() || seleccion < 1 || seleccion > opts.size());
     return --seleccion;
 }
