@@ -13,6 +13,9 @@ class Jugador {
     std::string nombre() const;
     int valor() const;
     void set_club(Club *club);
+    void set_valor(int nuevo_valor);
+    int id() const;
+    Club *club() const;
 
   protected:
     int id_;

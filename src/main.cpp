@@ -25,8 +25,8 @@ int main() {
         Opcion{"Salir", []() { return; }},
         Opcion{"Ver Club", []() { sim_->ver_mi_club(); }},
         Opcion{"Explorar Jugadores", []() {}},
-        Opcion{"Realizar Oferta", []() {}},
-        Opcion{"Reviasr Ofertas", []() {}},
+        Opcion{"Realizar Oferta", []() { sim_->realizar_oferta(); }},
+        Opcion{"Revisar Ofertas", []() { sim_->revisar_ofertas(); }},
         Opcion{"Ver Historial", []() {}},
         Opcion{"Avanzar de día", []() {}},
     };

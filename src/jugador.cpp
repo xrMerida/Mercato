@@ -21,9 +21,13 @@ void Jugador::mostrar_info() const {
 
 std::string Jugador::nombre() const { return nombre_; }
 int Jugador::valor() const { return valor_; }
+int Jugador::id() const { return id_; }
+Club *Jugador::club() const { return club_; }
+void Jugador::set_valor(int nuevo_valor) { valor_ = nuevo_valor; }
 void Jugador::set_club(Club *club) {
     if (!club)
         throw "direccion de club invalida";
 
     club_ = club;
 }
+
