@@ -8,6 +8,7 @@ class Portero : public Jugador {
     ~Portero() = default;
 
     void mostrar_info() const override;
+    std::string posicion() const override;
 
   private:
     int atajadas_;

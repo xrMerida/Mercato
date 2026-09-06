@@ -16,10 +16,13 @@ class Simulacion {
     void revisar_ofertas();
     void ver_historial() const;
     void siguiente_dia();
+    void reporte_final() const;
+    bool juego_terminado() const;
 
   private:
     std::vector<Club *> clubes_;
     std::vector<Jugador *> jugadores_;
+    std::vector<Jugador *> plantilla_inicial_;
     Club *club_usuario_;
     int dia_actual_;
     const int dia_final_;

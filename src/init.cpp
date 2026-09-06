@@ -53,7 +53,7 @@ Simulacion *init::simulacion() {
                 new Delantero(20, "Marcus Thuram", aleat_int(35, 140)),
             }),
         new Club(
-            "Bayer Munich", aleat_int(100, 200),
+            "Bayer Múnich", aleat_int(100, 200),
             {
                 new Portero(21, "Manuel Neuer", aleat_int(20, 70)),
                 new Defensa(22, "Dayot Upamecano", aleat_int(25, 90)),
@@ -94,7 +94,7 @@ Simulacion *init::simulacion() {
     std::cout << "\n--- Datos Generados ------";
     for (size_t i = 0; i < std::size(clubes); i++) {
         std::cout << "\n- " << clubes[i]->nombre << " (Q "
-                  << clubes[i]->presupuesto << ")\n";
+                  << clubes[i]->presupuesto << " millones)\n";
         for (size_t j = 0; clubes[i]->jugadores.size() > j; j++) {
             std::cout << "\n";
             clubes[i]->jugadores[j]->mostrar_info();
@@ -106,9 +106,10 @@ Simulacion *init::simulacion() {
 
     char continuar;
     do {
-        std::cout << "Continuar? [S/n]: ";
+        std::cout << "Continuar? [S/N]: ";
         std::cin >> continuar;
-    } while (fallo_cin());
+    } while (fallo_cin() || (continuar != 'S' && continuar != 's' &&
+                             continuar != 'N' && continuar != 'n'));
 
     if (continuar == 'N' || continuar == 'n') {
         for (size_t c = 0; c < clubes.size(); c++) {
@@ -124,15 +125,12 @@ Simulacion *init::simulacion() {
 }
 
 void init::terminal() {
-#ifdef __WIN32
-    // Set UTF8 for windows console
+#ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
-    // Allow ANSI escape codes for windows console
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    // Enable virtual terminal processing
     DWORD mode;
     GetConsoleMode(hOut, &mode);
     mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, mode);
-#endif // !__WIN32
+#endif
 }

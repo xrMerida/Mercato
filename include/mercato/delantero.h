@@ -8,4 +8,5 @@ class Delantero : public Jugador {
     ~Delantero() = default;
 
     void mostrar_info() const override;
+    std::string posicion() const override;
 };

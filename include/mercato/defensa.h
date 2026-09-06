@@ -8,4 +8,5 @@ class Defensa : public Jugador {
     ~Defensa() = default;
 
     void mostrar_info() const override;
+    std::string posicion() const override;
 };

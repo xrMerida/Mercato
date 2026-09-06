@@ -5,6 +5,7 @@
 enum class EstadoOferta { Pendiente, Aceptada, Rechazada };
 
 struct Oferta {
+    int id;
     Jugador *jugador;
     Club *comprador;
     Club *vendedor;

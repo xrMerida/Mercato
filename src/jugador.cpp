@@ -14,7 +14,7 @@ Jugador::Jugador(int id, std::string nombre, int valor)
 void Jugador::mostrar_info() const {
     std::cout << "ID: " << id_ << "\n"
               << "Nombre: " << nombre_ << "\n"
-              << "Valor: Q " << valor_ << "\n";
+              << "Valor: Q " << valor_ << " millones\n";
     if (club_)
         std::cout << "Club: " << club_->nombre << std::endl;
 }
@@ -30,4 +30,4 @@ void Jugador::set_club(Club *club) {
 
     club_ = club;
 }
-
+std::string Jugador::posicion() const { return "Desconocida"; }

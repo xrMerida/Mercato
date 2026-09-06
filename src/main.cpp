@@ -24,18 +24,18 @@ int main() {
     constexpr const array _menu_p{
         Opcion{"Salir", []() { return; }},
         Opcion{"Ver Club", []() { sim_->ver_mi_club(); }},
-        Opcion{"Explorar Jugadores", []() {}},
+        Opcion{"Explorar Jugadores", []() { sim_->explorar_jugadores(); }},
         Opcion{"Realizar Oferta", []() { sim_->realizar_oferta(); }},
         Opcion{"Revisar Ofertas", []() { sim_->revisar_ofertas(); }},
-        Opcion{"Ver Historial", []() {}},
-        Opcion{"Avanzar de día", []() {}},
+        Opcion{"Ver Historial", []() { sim_->ver_historial(); }},
+        Opcion{"Avanzar de día", []() { sim_->siguiente_dia(); }},
     };
 
     int seleccion;
     do {
         seleccion = menu(_msg_p, _menu_p);
         _menu_p[seleccion].accion();
-    } while (seleccion != 0);
+    } while (seleccion != 0 && !sim_->juego_terminado());
 
-    delete sim_;
+    sim_->reporte_final();
 }

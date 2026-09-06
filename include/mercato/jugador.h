@@ -10,6 +10,7 @@ class Jugador {
     virtual ~Jugador() = default;
 
     virtual void mostrar_info() const;
+    virtual std::string posicion() const;
     std::string nombre() const;
     int valor() const;
     void set_club(Club *club);
