@@ -1,5 +1,6 @@
 #pragma once
 
+#include <climits>
 #include <span>
 
 struct Opcion {
@@ -10,6 +11,8 @@ struct Opcion {
 int aleat_int(int min, int max);
 bool fallo_cin();
 int menu(const char *const msg, const std::span<const Opcion> opts);
+bool confirmo_usuario(const char *msg = "Continuar?");
+int leer_int(const char *const msg, int min = INT_MIN, int max = INT_MAX);
 void detener_usuario();
 
 // Colores para la terminal
