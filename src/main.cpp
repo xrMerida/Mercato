@@ -45,7 +45,7 @@ void realizar_oferta() {
     if (!confirmo_usuario())
         return;
 
-    int monto = leer_int("Monto a ofrecer (millones)", 1);
+    int monto = leer_int("Monto a ofrecer (€ M)", 1);
     if (!confirmo_usuario("Ofertar jugador?"))
         return;
 

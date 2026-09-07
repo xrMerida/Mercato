@@ -42,8 +42,8 @@ void Simulacion::mostrar_club_usuario() const {
     std::cout << kCYELLOW << "\n------- " << club_usuario_->nombre
               << " -------\n"
               << kCRES;
-    std::cout << kSBOLD << "Presupuesto: Q" << club_usuario_->presupuesto
-              << " millones\n"
+    std::cout << kSBOLD << "Presupuesto: € " << club_usuario_->presupuesto
+              << "M\n"
               << kCRES;
     std::cout << "Jugadores: " << club_usuario_->jugadores.size() << "\n";
 }
@@ -58,8 +58,8 @@ void Simulacion::mostrar_plantilla() const {
 
 void Simulacion::listar_jugadores() const {
     for (size_t c = 0; c < clubes_.size(); c++) {
-        std::cout << kCYELLOW << "\n------ " << clubes_[c]->nombre
-                  << " ------\n"
+        std::cout << kCYELLOW << "\n------ " << clubes_[c]->nombre << " (€ "
+                  << clubes_[c]->presupuesto << "M)" << " ------\n"
                   << kCRES;
         for (size_t j = 0; j < clubes_[c]->jugadores.size(); j++) {
             clubes_[c]->jugadores[j]->mostrar_info();
@@ -119,7 +119,7 @@ void Simulacion::realizar_oferta(int id_jugador, int monto) {
         return;
     }
     if (monto <= 0) {
-        std::cerr << kCRED << "\nEl monto de la oferta debe ser mayor a 0\n"
+        std::cerr << kCRED << "\nEl monto de la oferta debe ser mayor a € 0M\n"
                   << kCRES;
         return;
     }
@@ -147,7 +147,7 @@ void Simulacion::realizar_oferta(int id_jugador, int monto) {
     std::cout << kCGREEN << "\n------- Oferta Realizada -------\n" << kCRES;
     std::cout << kSBOLD << "Jugador: " << jugador->nombre() << "\n" << kCRES;
     std::cout << "Del club: " << jugador->club()->nombre << "\n";
-    std::cout << "Por: Q" << monto << " millones\n";
+    std::cout << "Por: € " << monto << "M\n";
 }
 
 void Simulacion::siguiente_dia() {
@@ -233,8 +233,7 @@ void Simulacion::revisar_ofertas() {
 
     std::cout << kCYELLOW << "\n------- Oferta Recibida -------\n" << kCRES;
     jugador_ofertado->mostrar_info();
-    std::cout << kCYELLOW << "\nOferta por: Q " << monto_oferta
-              << " millones\n";
+    std::cout << kCYELLOW << "\nOferta por: € " << monto_oferta << "M\n";
 
     if (!confirmo_usuario("Aceptar?")) {
         ofertas_rechazadas_++;
@@ -293,7 +292,7 @@ void Simulacion::mostrar_transferencia(int t_indice) const {
     std::cout << kSFAINT << "Origen: " << t->origen->nombre << "\n"
               << "Destino: " << t->destino->nombre << "\n"
               << kCRES;
-    std::cout << "Monto: Q " << t->monto << " millones\n" << kCRES;
+    std::cout << "Monto: € " << t->monto << " M\n" << kCRES;
     std::cout << "\n";
 }
 
@@ -312,14 +311,12 @@ void Simulacion::reporte_final() const {
     mostrar_plantilla();
 
     std::cout << kCYELLOW << "\n--- Presupuesto ---\n" << kCRES;
-    std::cout << "Inicial: Q " << presupuesto_inicial_ << " millones\n";
-    std::cout << "Final: Q " << club_usuario_->presupuesto << " millones\n";
+    std::cout << "Inicial: € " << presupuesto_inicial_ << " M\n";
+    std::cout << "Final: € " << club_usuario_->presupuesto << " M\n";
 
     std::cout << kCYELLOW << "\n--- Totales ---\n" << kCRES;
-    std::cout << "Total gastado en compras: Q " << total_gastado_
-              << " millones\n";
-    std::cout << "Total recibido por ventas: Q " << total_recibido_
-              << " millones\n";
+    std::cout << "Total gastado en compras: € " << total_gastado_ << " M\n";
+    std::cout << "Total recibido por ventas: € " << total_recibido_ << " M\n";
 
     std::cout << kCYELLOW << "\n--- Ofertas ---\n" << kCRES;
     std::cout << "Aceptadas: " << ofertas_aceptadas_ << "\n";

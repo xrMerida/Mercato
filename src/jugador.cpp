@@ -15,7 +15,7 @@ Jugador::Jugador(int id, std::string nombre, int valor)
 void Jugador::mostrar_info() const {
     std::cout << kSFAINT << "ID: " << id_ << "\n"
               << kCRES << kSBOLD << "Nombre: " << nombre_ << "\n"
-              << kCRES << "Valor: Q " << valor_ << " millones\n";
+              << kCRES << "Valor: € " << valor_ << "M\n";
     if (club_)
         std::cout << "Club: " << club_->nombre << std::endl;
 }
