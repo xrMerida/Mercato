@@ -1,3 +1,5 @@
+#include "simulacion.h"
+#include <array>
 #include <cstddef>
 #include <iostream>
 #include <iterator>
@@ -16,7 +18,7 @@
 
 Simulacion *init::simulacion() {
     // Generar los Clubes y Jugadores
-    std::vector<Club *> clubes{
+    std::vector clubes{
         new Club(
             "Real Madrid", aleat_int(100, 200),
             {
@@ -94,46 +96,25 @@ Simulacion *init::simulacion() {
              club_usuario > std::size(clubes));
     club_usuario--;
 
-    do {
-        std::cout << kCCYAN << "Dias a simular" << kCRES << kSFAINT
-                  << " [5 - 15]: " << kCRES;
-        std::cin >> dia_final;
-    } while (fallo_cin() || dia_final < 5 || dia_final > 15);
-
-    // Resumen
-    std::cout << kCCYAN << "\n--- Datos Generados ------\n";
-    for (size_t i = 0; i < std::size(clubes); i++) {
-        std::cout << kCYELLOW << "\n- " << clubes[i]->nombre << kCGREEN
-                  << " (Q " << clubes[i]->presupuesto << " millones)\n"
-                  << kCRES;
-        for (size_t j = 0; clubes[i]->jugadores.size() > j; j++) {
-            std::cout << "\n";
-            clubes[i]->jugadores[j]->mostrar_info();
-        }
+    std::cout << kCYELLOW << "\n------- Plantilla -------\n" << kCRES;
+    for (size_t j = 0; j < clubes[club_usuario]->jugadores.size(); j++) {
+        clubes[club_usuario]->jugadores[j]->mostrar_info();
+        std::cout << "\n";
     }
-    std::cout << kCCYAN << "\n--- Usuario ------\n"
-              << kCRES << "Club: " << clubes[club_usuario]->nombre << "\n"
-              << "Dias a simular: " << dia_final << "\n"
-              << std::endl;
 
-    char continuar;
-    do {
-        std::cout << "Continuar? [S/N]: ";
-        std::cin >> continuar;
-    } while (fallo_cin() || (continuar != 'S' && continuar != 's' &&
-                             continuar != 'N' && continuar != 'n'));
+    dia_final = leer_int("Dias a simular", 5, 15);
 
-    if (continuar == 'N' || continuar == 'n') {
-        for (size_t c = 0; c < clubes.size(); c++) {
-            for (size_t j = 0; j < clubes[c]->jugadores.size(); j++) {
-                delete clubes[c]->jugadores[j];
-            }
-            delete clubes[c];
-        }
+    Simulacion *sim = new Simulacion(clubes, dia_final, club_usuario);
+    // Resumen
+    sim->listar_jugadores();
+    sim->mostrar_club_usuario();
+
+    if (!confirmo_usuario()) {
+        delete sim;
         return nullptr;
     }
 
-    return new Simulacion(clubes, dia_final, club_usuario);
+    return sim;
 }
 
 void init::terminal() {
