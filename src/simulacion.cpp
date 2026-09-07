@@ -49,7 +49,7 @@ void Simulacion::mostrar_club_usuario() const {
 }
 
 void Simulacion::mostrar_plantilla() const {
-    std::cout << kCYELLOW << "\n------- Plantilla -------\n" << kCRES;
+    std::cout << kCYELLOW << "\n------- Plantilla Actual -------\n" << kCRES;
     for (size_t j = 0; j < club_usuario_->jugadores.size(); j++) {
         club_usuario_->jugadores[j]->mostrar_info();
         std::cout << "\n";
@@ -307,7 +307,6 @@ void Simulacion::reporte_final() const {
         std::cout << "\n";
     }
 
-    std::cout << kCYELLOW << "\n--- Plantilla Final ---\n" << kCRES;
     mostrar_plantilla();
 
     std::cout << kCYELLOW << "\n--- Presupuesto ---\n" << kCRES;
