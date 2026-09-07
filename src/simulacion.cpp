@@ -1,11 +1,11 @@
 #include "simulacion.h"
 #include "club.h"
-#include "transferencia.h"
+#include "common.h"
 #include "oferta.h"
+#include "transferencia.h"
 #include <cstddef>
 #include <iostream>
 #include <vector>
-#include "common.h"
 
 Simulacion::Simulacion(std::vector<Club *> clubes, int dia_final,
                        int club_usuario)
@@ -29,25 +29,27 @@ Simulacion::Simulacion(std::vector<Club *> clubes, int dia_final,
     }
 }
 Simulacion::~Simulacion() {
-    for (size_t c = 0; c < clubes_.size(); c++) {
-        delete clubes_[c];
-    }
     for (size_t j = 0; j < jugadores_.size(); j++) {
         delete jugadores_[j];
     }
+    for (size_t c = 0; c < clubes_.size(); c++) {
+        delete clubes_[c];
+    }
 }
 
-void Simulacion::ver_mi_club() const {
-    std::cout << "---" << club_usuario_->nombre << "------\n"
-              << "Dias: " << dia_actual_ << " / " << dia_final_ << "\n"
-              << "Presupuesto: Q" << club_usuario_->presupuesto
-              << " millones\n";
-    std::cout << "\n------- Plantilla -------\n";
+void Simulacion::ver_club() const {
+    std::cout << kCYELLOW << "\n------- Plantilla -------\n" << kCRES;
     for (size_t j = 0; j < club_usuario_->jugadores.size(); j++) {
         club_usuario_->jugadores[j]->mostrar_info();
         std::cout << "\n";
     }
+    std::cout << kCCYAN << "======= " << club_usuario_->nombre << " ======= \n"
+              << kCRES << "Dias: " << dia_actual_ << " / " << dia_final_ << "\n"
+              << kCGREEN << "Presupuesto: Q" << club_usuario_->presupuesto
+              << " millones\n"
+              << kCRES;
 }
+
 void Simulacion::realizar_oferta() {
     for (size_t j = 0; j < jugadores_.size(); j++) {
         std::cout << "\n";
@@ -93,7 +95,7 @@ void Simulacion::realizar_oferta() {
 }
 void Simulacion::siguiente_dia() {
     for (size_t i = 0; i < ofertas_pendientes_.size(); i++) {
-        Oferta &oferta_actual= ofertas_pendientes_[i];
+        Oferta &oferta_actual = ofertas_pendientes_[i];
         if (oferta_actual.estado != EstadoOferta::Pendiente)
             continue;
         int valor_minimo =
@@ -259,8 +261,7 @@ void Simulacion::revisar_ofertas() {
     } else if (respuesta == 'N' || respuesta == 'n') {
         ofertas_rechazadas_++;
         std::cout << "\nOferta rechazada.\n";
-    }
-    else {
+    } else {
         std::cout << "\nRespuesta invalida. Se considera como rechazo.\n";
         ofertas_rechazadas_++;
     }
@@ -270,7 +271,8 @@ void Simulacion::ver_historial() const {
         std::cout << "\nNo hay transferencias registradas.\n";
         return;
     }
-    std::cout << "\n------- Historial de Transferencias -------\n";
+    std::cout << kCYELLOW << "\n------- Historial de Transferencias -------\n"
+              << kCRES;
     for (size_t i = 0; i < historial_.size(); i++) {
         const Transferencia &t = historial_[i];
         std::cout << "\nDia: " << t.dia << "\n"
@@ -281,35 +283,36 @@ void Simulacion::ver_historial() const {
     }
 }
 void Simulacion::reporte_final() const {
-    std::cout << "\n======= REPORTE FINAL =======\n";
-    std::cout << "\nClub administrado: " << club_usuario_->nombre << "\n";
+    std::cout << kCCYAN << "\n======= REPORTE FINAL =======\n" << kCRES;
+    std::cout << kSBOLD << "\nClub administrado: " << club_usuario_->nombre
+              << "\n"
+              << kCRES;
 
-    std::cout << "\n--- Plantilla Inicial ---\n";
+    std::cout << kCYELLOW << "\n--- Plantilla Inicial ---\n" << kCRES;
     for (size_t j = 0; j < plantilla_inicial_.size(); j++) {
         plantilla_inicial_[j]->mostrar_info();
         std::cout << "\n";
     }
 
-    std::cout << "\n--- Plantilla Final ---\n";
+    std::cout << kCYELLOW << "\n--- Plantilla Final ---\n" << kCRES;
     for (size_t j = 0; j < club_usuario_->jugadores.size(); j++) {
         club_usuario_->jugadores[j]->mostrar_info();
         std::cout << "\n";
     }
-    std::cout << "\n--- Presupuesto ---\n";
+    std::cout << kCYELLOW << "\n--- Presupuesto ---\n" << kCRES;
     std::cout << "Inicial: Q" << presupuesto_inicial_ << " millones\n";
     std::cout << "Final: Q" << club_usuario_->presupuesto << " millones\n";
 
-    std::cout << "\n--- Totales ---\n";
-    std::cout << "Total gastado en compras: Q" << total_gastado_ << " millones\n";
-    std::cout << "Total recibido por ventas: Q" << total_recibido_ << " millones\n";
+    std::cout << kCYELLOW << "\n--- Totales ---\n" << kCRES;
+    std::cout << "Total gastado en compras: Q" << total_gastado_
+              << " millones\n";
+    std::cout << "Total recibido por ventas: Q" << total_recibido_
+              << " millones\n";
 
-    std::cout << "\n--- Ofertas ---\n";
+    std::cout << kCYELLOW << "\n--- Ofertas ---\n" << kCRES;
     std::cout << "Aceptadas: " << ofertas_aceptadas_ << "\n";
     std::cout << "Rechazadas: " << ofertas_rechazadas_ << "\n";
 
-    std::cout << "\n--- Historial completo ---\n";
     ver_historial();
 }
-bool Simulacion::juego_terminado() const {
-    return dia_actual_ > dia_final_;
-}
+bool Simulacion::juego_terminado() const { return dia_actual_ > dia_final_; }

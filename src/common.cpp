@@ -26,10 +26,10 @@ bool fallo_cin() {
     return cinfail;
 }
 
-int menu(const char *msg, std::span<const Opcion> opts) {
+int menu(const char *const msg, const std::span<const Opcion> opts) {
     int seleccion;
     do {
-        std::cout << kCCYAN << msg << kCRES;
+        std::cout << kCCYAN << msg;
         for (size_t i = 0; i < opts.size(); ++i) {
             std::cout << kCGREEN << (i + 1) << ". " << kCRES << opts[i].texto
                       << "\n";
@@ -39,4 +39,11 @@ int menu(const char *msg, std::span<const Opcion> opts) {
         std::cin >> seleccion;
     } while (fallo_cin() || seleccion < 1 || seleccion > opts.size());
     return --seleccion;
+}
+
+void detener_usuario() {
+    std::cout << kSFAINT << kSITALIC << "Presione enter para continuar"
+              << kCRES;
+    std::cin.get();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

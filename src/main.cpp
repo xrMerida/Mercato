@@ -23,7 +23,7 @@ int main() {
         "▄█▄ █ ▄██▄  ▀█▄▄▄▀ ▄██▄     ▀█▄▄▄▀ ▀█▄▄▀█▀  ▀█▄▀  ▀█▄▄█▀\n";
     constexpr const array _menu_p{
         Opcion{"Salir", []() { return; }},
-        Opcion{"Ver Club", []() { sim_->ver_mi_club(); }},
+        Opcion{"Ver Club", []() { sim_->ver_club(); }},
         Opcion{"Explorar Jugadores", []() { sim_->explorar_jugadores(); }},
         Opcion{"Realizar Oferta", []() { sim_->realizar_oferta(); }},
         Opcion{"Revisar Ofertas", []() { sim_->revisar_ofertas(); }},
@@ -35,6 +35,7 @@ int main() {
     do {
         seleccion = menu(_msg_p, _menu_p);
         _menu_p[seleccion].accion();
+        detener_usuario();
     } while (seleccion != 0 && !sim_->juego_terminado());
 
     sim_->reporte_final();

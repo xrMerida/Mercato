@@ -9,7 +9,8 @@ struct Opcion {
 
 int aleat_int(int min, int max);
 bool fallo_cin();
-int menu(const char *msg, std::span<const Opcion> opts);
+int menu(const char *const msg, const std::span<const Opcion> opts);
+void detener_usuario();
 
 // Colores para la terminal
 constexpr const char *kCBLACK = "\033[1;30m";

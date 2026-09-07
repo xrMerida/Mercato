@@ -8,4 +8,5 @@ void Mediocampista::mostrar_info() const {
     Jugador::mostrar_info();
     std::cout << "Posicion: " << posicion() << "\n";
 }
+
 std::string Mediocampista::posicion() const { return "Mediocampista"; }

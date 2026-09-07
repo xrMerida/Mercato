@@ -4,7 +4,8 @@
 
 class Portero : public Jugador {
   public:
-    Portero(int id, std::string nombre, int valor);
+    Portero(int id, std::string nombre, int valor, int atajadas,
+            int salidas_exitosas, int goles_recibidos);
     ~Portero() = default;
 
     void mostrar_info() const override;

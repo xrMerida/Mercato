@@ -1,16 +1,16 @@
 #pragma once
 
-#include "oferta.h"
-#include "transferencia.h"
 #include "club.h"
 #include "jugador.h"
+#include "oferta.h"
+#include "transferencia.h"
 #include <vector>
 
 class Simulacion {
   public:
     Simulacion(std::vector<Club *> clubes, int dia_final, int club_usuario);
     ~Simulacion();
-    void ver_mi_club() const;
+    void ver_club() const;
     void explorar_jugadores() const;
     void realizar_oferta();
     void revisar_ofertas();

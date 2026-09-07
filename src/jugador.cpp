@@ -1,5 +1,6 @@
 #include "jugador.h"
 #include "club.h"
+#include "common.h"
 #include <iostream>
 #include <string>
 
@@ -12,9 +13,9 @@ Jugador::Jugador(int id, std::string nombre, int valor)
 }
 
 void Jugador::mostrar_info() const {
-    std::cout << "ID: " << id_ << "\n"
-              << "Nombre: " << nombre_ << "\n"
-              << "Valor: Q " << valor_ << " millones\n";
+    std::cout << kSFAINT << "ID: " << id_ << "\n"
+              << kCRES << kSBOLD << "Nombre: " << nombre_ << "\n"
+              << kCRES << "Valor: Q " << valor_ << " millones\n";
     if (club_)
         std::cout << "Club: " << club_->nombre << std::endl;
 }
