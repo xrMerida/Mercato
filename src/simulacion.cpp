@@ -123,6 +123,11 @@ void Simulacion::realizar_oferta(int id_jugador, int monto) {
                   << kCRES;
         return;
     }
+    if (monto > club_usuario_->presupuesto) {
+        std::cerr << kCRED << "\nNo tiene suficiente presupuesto para ofertar\n"
+                  << kCRES;
+        return;
+    }
     // Revisar que no se oferte dos veces al mismo jugador
     for (size_t o = 0; o < ofertas_pendientes_.size(); o++) {
         if (ofertas_pendientes_[o].jugador != jugador)
@@ -213,7 +218,7 @@ void Simulacion::siguiente_dia() {
 
 size_t Simulacion::jugadores_max() const { return jugadores_.size(); }
 
-void Simulacion::revisar_ofertas() {
+void Simulacion::revisar_oferta() {
     if (club_usuario_->jugadores.empty()) {
         std::cerr << kCRED << "\nNo tienes jugadores en tu club.\n" << kCRES;
         return;
@@ -312,12 +317,12 @@ void Simulacion::reporte_final() const {
     mostrar_plantilla();
 
     std::cout << kCYELLOW << "\n--- Presupuesto ---\n" << kCRES;
-    std::cout << "Inicial: € " << presupuesto_inicial_ << " M\n";
-    std::cout << "Final: € " << club_usuario_->presupuesto << " M\n";
+    std::cout << "Inicial: € " << presupuesto_inicial_ << "M\n";
+    std::cout << "Final: € " << club_usuario_->presupuesto << "M\n";
 
     std::cout << kCYELLOW << "\n--- Totales ---\n" << kCRES;
-    std::cout << "Total gastado en compras: € " << total_gastado_ << " M\n";
-    std::cout << "Total recibido por ventas: € " << total_recibido_ << " M\n";
+    std::cout << "Total gastado en compras: € " << total_gastado_ << "M\n";
+    std::cout << "Total recibido por ventas: € " << total_recibido_ << "M\n";
 
     std::cout << kCYELLOW << "\n--- Ofertas ---\n" << kCRES;
     std::cout << "Aceptadas: " << ofertas_aceptadas_ << "\n";

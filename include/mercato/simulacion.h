@@ -18,7 +18,7 @@ class Simulacion {
     void mostrar_plantilla() const;
     void mostrar_jugador(int id) const;
     void realizar_oferta(int id_jugador, int monto);
-    void revisar_ofertas();
+    void revisar_oferta();
     void ver_historial() const;
     void siguiente_dia();
     void reporte_final() const;

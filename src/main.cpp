@@ -42,9 +42,6 @@ void realizar_oferta() {
     int id = leer_int("ID del jugador a ofertar", 1, sim_->jugadores_max());
     sim_->mostrar_jugador(id);
 
-    if (!confirmo_usuario())
-        return;
-
     int monto = leer_int("Monto a ofrecer (€ M)", 1);
     if (!confirmo_usuario("Ofertar jugador?"))
         return;
@@ -76,7 +73,7 @@ int main() {
         Opcion{"Ver Club", ver_club},
         Opcion{"Explorar Jugadores", explorar_jugadores},
         Opcion{"Realizar Oferta", realizar_oferta},
-        Opcion{"Revisar Ofertas", []() { sim_->revisar_ofertas(); }},
+        Opcion{"Revisar Ofertas", []() { sim_->revisar_oferta(); }},
         Opcion{"Ver Historial", []() { sim_->ver_historial(); }},
         Opcion{"Avanzar de día", []() { sim_->siguiente_dia(); }},
     };
