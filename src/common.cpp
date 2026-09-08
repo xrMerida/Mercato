@@ -17,8 +17,10 @@ int aleat_int(int min, int max) {
 }
 
 bool fallo_cin() {
-    if (std::cin.eof())
-        throw "final de archivo de entrada";
+    if (std::cin.eof()) {
+        std::cerr << "\nEOF detectado. Saliendo...\n";
+        exit(130);
+    }
 
     bool cinfail = std::cin.fail();
     if (cinfail) {

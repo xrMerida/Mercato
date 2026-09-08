@@ -224,12 +224,15 @@ void Simulacion::revisar_ofertas() {
     Jugador *jugador_ofertado = club_usuario_->jugadores[indice_jugador];
 
     Club *club_comprador = nullptr;
+    int monto_oferta;
     do {
         int indice_club = aleat_int(0, static_cast<int>(clubes_.size() - 1));
         club_comprador = clubes_[indice_club];
     } while (club_comprador == club_usuario_);
-    int porcentaje = aleat_int(90, 130);
-    int monto_oferta = jugador_ofertado->valor() * porcentaje / 100;
+    do {
+        int porcentaje = aleat_int(90, 130);
+        monto_oferta = jugador_ofertado->valor() * porcentaje / 100;
+    } while (club_comprador->presupuesto < monto_oferta);
 
     std::cout << kCYELLOW << "\n------- Oferta Recibida -------\n" << kCRES;
     jugador_ofertado->mostrar_info();
@@ -246,7 +249,6 @@ void Simulacion::revisar_ofertas() {
     total_recibido_ += monto_oferta;
 
     // --- Iniciar Transferencia ----------
-    // Eliminar jugador del club usuario
     for (size_t j = 0; j < club_usuario_->jugadores.size(); j++) {
         if (club_usuario_->jugadores[j] != jugador_ofertado)
             continue;
