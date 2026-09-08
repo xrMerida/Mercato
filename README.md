@@ -94,3 +94,33 @@ Al terminar la simulación se muestra:
 - Los menús aceptan números correspondientes a las opciones mostradas.
 - Las preguntas de confirmación aceptan `S`/`s` para sí y `N`/`n` para no.
 - Si se ingresa un valor invalido, se ignora.
+
+# Contribuciones
+
+## Analisis y Diseño (Fase 01)
+
+| Seccion                | Desarollador       | Porcentaje |
+| ---------------------- | ------------------ | ---------- |
+| Entradas               | Sebastían Gonzáles | 05%        |
+| Procesos               | Sebastían Gonzáles | 05%        |
+| Salidas                | Xavier Mérida      | 05%        |
+| Validaciones           | Xavier Mérida      | 05%        |
+| Seleccion de jugadores | Xavier Mérida      | 02%        |
+| Diagrama de clases     | Xavier Mérida      | 39%        |
+| Diagrama de flujo      | Sebastían Gonzáles | 39%        |
+
+## Desarollo del Programa (Fase 02)
+
+| Parte                        | Desarollador       | Porcentaje |
+| ---------------------------- | ------------------ | ---------- |
+| Logica `Jugador` y derivadas | Xavier Mérida      | 2%         |
+| Logica `Jugador` y derivadas | Sebastían Gonzáles | 3%         |
+| Logica `Simulador`           | Xavier Mérida      | 35%        |
+| Logica `Simulador`           | Sebastían Gonzáles | 45%        |
+| Logica de `main`             | Xavier Mérida      | 5%         |
+| Logica de `main`             | Sebastían Gonzáles | 2%         |
+| Interfaz de usuario          | Xavier Mérida      | 8%         |
+
+## Licencia
+
+Este proyecto está bajo la licencia GPLv3. Ver el archivo [LICENSE](LICENSE) para más detalles.
