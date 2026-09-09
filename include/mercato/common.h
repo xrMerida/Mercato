@@ -8,11 +8,22 @@ struct Opcion {
     void (*const accion)();
 };
 
+// Genera un entero aleatorio entre min y max (inclusive).
 int aleat_int(int min, int max);
+
+// Detecta y limpia un error de entrada; sale si se llega a EOF.
 bool fallo_cin();
+
+// Muestra el mensaje y las opciones, y devuelve el indice elegido (base 0).
 int menu(const char *const msg, const std::span<const Opcion> opts);
+
+// Pide confirmacion SI/NO y devuelve true si el usuario confirma.
 bool confirmo_usuario(const char *msg = "Continuar?");
+
+// Lee un entero validado dentro del rango [min, max].
 int leer_int(const char *const msg, int min = INT_MIN, int max = INT_MAX);
+
+// Pausa la ejecucion hasta que el usuario presione Enter.
 void detener_usuario();
 
 // Colores para la terminal

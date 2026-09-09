@@ -8,6 +8,7 @@ using namespace std;
 
 Simulacion *sim_;
 
+// Muestra el submenu para explorar jugadores.
 void explorar_jugadores() {
     // POR POSICION ---------------------
     constexpr void (*por_posicion)() = []() {
@@ -38,6 +39,7 @@ void explorar_jugadores() {
     _menu[menu("Explorar Jugadores", _menu)].accion();
 }
 
+// Guia al usuario para realizar una oferta por un jugador.
 void realizar_oferta() {
     int id = leer_int("ID del jugador a ofertar", 1, sim_->jugadores_max());
     sim_->mostrar_jugador(id);
@@ -49,6 +51,7 @@ void realizar_oferta() {
     sim_->realizar_oferta(id, monto);
 }
 
+// Muestra la plantilla y la situacion del club del usuario.
 void ver_club() {
     sim_->mostrar_plantilla();
     sim_->mostrar_club_usuario();
